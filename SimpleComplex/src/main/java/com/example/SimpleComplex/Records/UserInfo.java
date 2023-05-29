@@ -12,7 +12,7 @@ public record UserInfo(
     String city,
     String state,
     String zipCode,
-    String country
-) {
-
-}
+    String country,
+    double xCoordinate,
+    double yCoordinate
+) {}

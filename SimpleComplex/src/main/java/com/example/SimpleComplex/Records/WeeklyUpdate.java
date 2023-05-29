@@ -1,15 +1,15 @@
 package com.example.SimpleComplex.Records;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record WeeklyUpdate(
+        int userId,
         int id,
-        Date date,
+        LocalDate date,
         int occupancy,
         int prospects,
         int sales,
         double singlePrice,
         double doublePrice,
         double triplePrice
-) {
-}
+){}
