@@ -13,6 +13,6 @@ public record UserInfo(
     String state,
     String zipCode,
     String country,
-    double xCoordinate,
-    double yCoordinate
+    double longitude,
+    double latitude
 ) {}
