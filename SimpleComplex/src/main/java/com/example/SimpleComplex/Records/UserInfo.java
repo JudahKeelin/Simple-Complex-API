@@ -23,7 +23,7 @@ public class UserInfo {
     private String country;
     private double longitude;
     private double latitude;
-    private String neighborhood;
+    private String neighborhood = "";
 
     public UserInfo() {
     }

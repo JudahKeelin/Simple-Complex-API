@@ -2,6 +2,27 @@
 GET http://localhost:8080/api/users
 
 
+### Add user
+POST http://localhost:8080/api/users/add
+Content-Type: application/json
+
+{
+  "firstName": "Charles",
+  "lastName": "Prince",
+  "complexName": "The Complex 5",
+  "email": "jbkeelin@fakemail.com",
+  "password": "password",
+  "phoneNumber": "337-322-1234",
+  "address": "1234 Fake St.",
+  "city": "Lafayette",
+  "state": "LA",
+  "zipCode": "70506",
+  "country": "USA",
+  "latitude": -30.331177413008208,
+  "longitude": 92.02008773201288
+}
+
+
 ### Save user
 POST http://localhost:8080/api/users/save
 Content-Type: application/json
