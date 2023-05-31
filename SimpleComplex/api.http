@@ -1,24 +1,43 @@
 ### Get all users
-GET http://localhost:8080/api/main
+GET http://localhost:8080/api/users
 
 
-### Add a user
-POST http://localhost:8080/api/users/add
+### Save user
+POST http://localhost:8080/api/users/save
 Content-Type: application/json
 
 {
-  "id": 3,
+  "id": 103,
   "firstName": "Joe",
-  "lastName": "momma",
+  "lastName": "Dirt",
   "complexName": "The Complex",
   "email": "jbkeelin@fakemail.com",
   "password": "password",
-  "phoneNumber": "337-322-9787",
+  "phoneNumber": "337-322-1234",
   "address": "1234 Fake St.",
   "city": "Lafayette",
   "state": "LA",
   "zipCode": "70506",
   "country": "USA",
-  "xCoordinate": 30.323368393744204,
-  "yCoordinate": -92.03026974603779
+  "latitude": 30.331186413008208,
+  "longitude": -92.02008873201288
+}
+
+### Get all updates
+GET http://localhost:8080/api/updates
+
+
+### Save update
+POST http://localhost:8080/api/updates/save
+Content-Type: application/json
+
+{
+  "userId": 52,
+  "date": "2023-05-23",
+  "occupancy": 80,
+  "prospects": 3,
+  "sales": 4,
+  "oneBedPrice": 798,
+  "twoBedPrice": 1001,
+  "threeBedPrice": 1245
 }

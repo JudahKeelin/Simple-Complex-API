@@ -1,8 +1,8 @@
 package com.example.SimpleComplex.Controller;
 
 import com.example.SimpleComplex.Records.UserInfo;
-import com.example.SimpleComplex.Repository.Updates;
-import com.example.SimpleComplex.Repository.Users;
+import com.example.SimpleComplex.Repository.UserInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -11,26 +11,25 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
 
+    @Autowired
+    private UserInfoRepository userInfo;
 
-    private final Users users;
-
-    public UserController(Users users) {
-        this.users = users;
-    }
 
     @GetMapping("")
-    public Users displayAll() {
-        return users;
+    public Iterable<UserInfo> displayAll() {
+        return userInfo.findAll();
     }
 
     @GetMapping("/{id}")
     public Optional<UserInfo> findById(@PathVariable int id) {
-        return users.getUserById(id);
+        return userInfo.findById(id);
     }
 
-    @PostMapping("/add")
-    public void addUser(@RequestBody UserInfo user) {
-        users.addUser(user);
-    }
 
+    @PostMapping("/save")
+    public void updateUserInfo(@RequestBody UserInfo user) {
+        UserInfo existingUser = userInfo.findById(user.getId()).orElse(null);
+        existingUser = user;
+        userInfo.save(existingUser);
+    }
 }
