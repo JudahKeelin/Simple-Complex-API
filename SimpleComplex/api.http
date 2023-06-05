@@ -7,10 +7,10 @@ POST http://localhost:8080/api/users/add
 Content-Type: application/json
 
 {
-  "firstName": "Charles",
-  "lastName": "Prince",
-  "complexName": "The Complex 5",
-  "email": "jbkeelin@fakemail.com",
+  "firstName": "Apple",
+  "lastName": "Bees",
+  "complexName": "The Complex 7",
+  "email": "johncena@fakemail.com",
   "password": "password",
   "phoneNumber": "337-322-1234",
   "address": "1234 Fake St.",
@@ -18,8 +18,8 @@ Content-Type: application/json
   "state": "LA",
   "zipCode": "70506",
   "country": "USA",
-  "latitude": -30.331177413008208,
-  "longitude": 92.02008773201288
+  "latitude": 30.331177413009208,
+  "longitude": -92.05008773201289
 }
 
 
@@ -62,3 +62,11 @@ Content-Type: application/json
   "twoBedPrice": 1001,
   "threeBedPrice": 1245
 }
+
+
+### Get home
+GET http://localhost:8080/api/users/home?email=johncena@fakemail&password=password
+
+
+### Get user by email
+GET http://localhost:8080/api/users/email?email=joesucks@fakemail.com
