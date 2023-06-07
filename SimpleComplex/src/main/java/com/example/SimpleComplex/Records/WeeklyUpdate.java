@@ -106,4 +106,18 @@ public class WeeklyUpdate {
     public void setThreeBedPrice(double threeBedPrice) {
         this.threeBedPrice = threeBedPrice;
     }
+
+    @Override
+    public String toString(){
+        return "WeeklyUpdate{" +
+                "id=" + id + '\''  +
+                ", date=" + date + '\''  +
+                ", occupancy=" + occupancy + '\''  +
+                ", prospects=" + prospects + '\''  +
+                ", sales=" + sales + '\''  +
+                ", oneBedPrice=" + oneBedPrice + '\''  +
+                ", twoBedPrice=" + twoBedPrice + '\''  +
+                ", threeBedPrice=" + threeBedPrice + '\''  +
+                '}';
+    }
 }

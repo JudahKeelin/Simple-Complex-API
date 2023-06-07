@@ -4,7 +4,6 @@ import com.example.SimpleComplex.Records.UserInfo;
 import com.example.SimpleComplex.Records.WeeklyUpdate;
 import com.example.SimpleComplex.Repository.Updates;
 import com.example.SimpleComplex.Repository.UserInfoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -15,11 +14,14 @@ import java.util.List;
 @RequestMapping("/api")
 public class MainController {
 
-    @Autowired
-    private UserInfoRepository userInfoRepository;
+    private final UserInfoRepository userInfoRepository;
 
-    @Autowired
-    private Updates updatesRepository;
+    private final Updates updatesRepository;
+
+    public MainController(UserInfoRepository userInfoRepository, Updates updatesRepository) {
+        this.userInfoRepository = userInfoRepository;
+        this.updatesRepository = updatesRepository;
+    }
 
     @GetMapping("/updates")
     public Iterable<WeeklyUpdate> displayAll() {
@@ -33,22 +35,22 @@ public class MainController {
 
     @PostMapping("/updates/save")
     public void updateUserInfo(@RequestBody WeeklyUpdate update) {
-        WeeklyUpdate existingUpdate = updatesRepository.findById(update.getId()).orElse(null);
+        WeeklyUpdate existingUpdate;
         existingUpdate = update;
         updatesRepository.save(existingUpdate);
     }
 
-    @GetMapping("/users/byEmail")
-    public UserInfo findByEmail(String email) {
-        System.out.println(userInfoRepository.findByEmail(email.toLowerCase()));
-        return userInfoRepository.findByEmail(email.toLowerCase());
+    @GetMapping("/users/find")
+    public int getUserId(@RequestParam String email, @RequestParam String password) {
+        UserInfo user = userInfoRepository.findByEmailAndPassword(email.toLowerCase(), password);
+        return user.getId();
     }
 
-    @GetMapping("/users/home")
-    public List<WeeklyUpdate> getHomePage(@RequestParam String email, @RequestParam String password) {
+    @GetMapping("/users/home/{id}")
+    public List<WeeklyUpdate> getHomePage(@PathVariable int id) {
         List<WeeklyUpdate> updates = new ArrayList<>();
-        UserInfo user = userInfoRepository.findByEmail(email.toLowerCase());
-        if (user.getPassword().equals(password)) {
+        UserInfo user = userInfoRepository.findById(id).orElse(null);
+        if (user != null) {
             for (String neighbor : user.getNeighborhood().split(",")) {
                 updates.addAll(updatesRepository.findAllByUserId(Integer.parseInt(neighbor)));
             }
@@ -62,7 +64,7 @@ public class MainController {
         userInfoRepository.save(user);
         user.setNeighborhood(String.valueOf(user.getId()));
         for (UserInfo neighbor : potentialNeighbors) {
-            Double distance = getDistance(user.getLatitude(), user.getLongitude(), neighbor.getLatitude(), neighbor.getLongitude());
+            double distance = getDistance(user.getLatitude(), user.getLongitude(), neighbor.getLatitude(), neighbor.getLongitude());
             if (distance < 5) {
                 user.setNeighborhood(user.getNeighborhood() + "," + neighbor.getId());
                 neighbor.setNeighborhood(neighbor.getNeighborhood() + "," + user.getId());
@@ -73,18 +75,18 @@ public class MainController {
 
     @PostMapping("/users/save")
     public void updateUserInfo(@RequestBody UserInfo user) {
-        UserInfo existingUser = userInfoRepository.findById(user.getId()).orElse(null);
+        UserInfo existingUser;
         existingUser = user;
         userInfoRepository.save(existingUser);
     }
 
 
-    public double getDistance(double lati1, double long1, double lati2, double long2) {
-        double distance = 0;
-        double lat = Math.toRadians(lati2-lati1);
+    public double getDistance(double lat1, double long1, double lat2, double long2) {
+        double distance;
+        double lat = Math.toRadians(lat2-lat1);
         double lon = Math.toRadians(long2-long1);
         double a = Math.sin(lat/2) * Math.sin(lat/2) +
-                Math.cos(Math.toRadians(lati1)) * Math.cos(Math.toRadians(lati2)) *
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
                         Math.sin(lon/2) * Math.sin(lon/2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         distance = 6371 * c;

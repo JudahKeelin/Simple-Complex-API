@@ -63,10 +63,9 @@ Content-Type: application/json
   "threeBedPrice": 1245
 }
 
+### Find user
+GET http://localhost:8080/api/users/find?email=jbkeelin@fakemail.com&password=password
+
 
 ### Get home
-GET http://localhost:8080/api/users/home?email=johncena@fakemail&password=password
-
-
-### Get user by email
-GET http://localhost:8080/api/users/email?email=joesucks@fakemail.com
+GET http://localhost:8080/api/users/home/1
