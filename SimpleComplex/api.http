@@ -66,6 +66,11 @@ Content-Type: application/json
 ### Find user
 GET http://localhost:8080/api/users/find?email=jbkeelin@fakemail.com&password=password
 
+### Find user
+GET https://simplecomplex-production.up.railway.app/api/users/find?email=jbkeelin@fakemail.com&password=password
 
 ### Get home
 GET http://localhost:8080/api/users/home/1
+
+### Get home
+GET https://simplecomplex-production.up.railway.app/api/users/home/1
