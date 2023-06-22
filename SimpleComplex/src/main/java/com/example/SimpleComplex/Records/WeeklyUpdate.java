@@ -19,12 +19,14 @@ public class WeeklyUpdate {
     private double oneBedPrice;
     private double twoBedPrice;
     private double threeBedPrice;
+    private String complexName;
 
     public WeeklyUpdate() {
     }
 
     public WeeklyUpdate(int userId, int id, LocalDate date, int occupancy, int prospects, int sales, double oneBedPrice, double twoBedPrice, double threeBedPrice) {
         this.userId = userId;
+        this.complexName = complexName;
         this.id = id;
         this.date = date;
         this.occupancy = occupancy;
@@ -41,6 +43,14 @@ public class WeeklyUpdate {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getComplexName() {
+        return complexName;
+    }
+
+    public void setComplexName(String complexName) {
+        this.complexName = complexName;
     }
 
     public int getId() {
@@ -111,6 +121,7 @@ public class WeeklyUpdate {
     public String toString(){
         return "WeeklyUpdate{" +
                 "id=" + id + '\''  +
+                "complexName=" + complexName + '\''  +
                 ", date=" + date + '\''  +
                 ", occupancy=" + occupancy + '\''  +
                 ", prospects=" + prospects + '\''  +
