@@ -54,6 +54,7 @@ Content-Type: application/json
 
 {
   "userId": 52,
+  "complexName": "The Complex",
   "date": "2023-05-23",
   "occupancy": 80,
   "prospects": 3,
