@@ -47,9 +47,9 @@ public class MainController {
     }
 
     @GetMapping("/users/find")
-    public int getUserId(@RequestParam String email, @RequestParam String password) {
+    public String getUserId(@RequestParam String email, @RequestParam String password) {
         UserInfo user = userInfoRepository.findByEmailAndPassword(email.toLowerCase(), password);
-        return user.getId();
+        return user.getUUID();
     }
 
     @GetMapping("/users/home/{id}")
@@ -66,6 +66,7 @@ public class MainController {
 
     @PostMapping("/users/add")
     public void addNewUser(@RequestBody UserInfo user) {
+        user.setUUID(java.util.UUID.randomUUID().toString());
         Iterable<UserInfo> potentialNeighbors = userInfoRepository.findAll();
         userInfoRepository.save(user);
         user.setNeighborhood(String.valueOf(user.getId()));
