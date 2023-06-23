@@ -55,7 +55,7 @@ public class MainController {
     @GetMapping("/users/home/{id}")
     public List<WeeklyUpdate> getHomePage(@PathVariable int id) {
         List<WeeklyUpdate> updates = new ArrayList<>();
-        UserInfo user = userInfoRepository.findByUUID(id);
+        UserInfo user = userInfoRepository.findById(id).orElse(null);
         if (user != null) {
             for (String neighbor : user.getNeighborhood().split(",")) {
                 updates.addAll(updatesRepository.findAllByUserId(Integer.parseInt(neighbor)));
