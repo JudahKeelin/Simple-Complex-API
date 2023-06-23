@@ -7,7 +7,6 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
-    private String UUID;
     private String firstName;
     private String lastName;
     private String complexName;
@@ -26,9 +25,8 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(int id, String UUID, String firstName, String lastName, String complexName, String email, String password, String phoneNumber, String address, String city, String state, String zipCode, String country, double longitude, double latitude, String neighborhood) {
+    public UserInfo(int id, String firstName, String lastName, String complexName, String email, String password, String phoneNumber, String address, String city, String state, String zipCode, String country, double longitude, double latitude, String neighborhood) {
         this.id = id;
-        this.UUID = UUID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.complexName = complexName;
@@ -184,13 +182,5 @@ public class UserInfo {
                 ", latitude=" + latitude +
                 ", neighborhood='" + neighborhood + '\'' +
                 '}';
-    }
-
-    public String getUUID() {
-        return UUID;
-    }
-
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
     }
 }

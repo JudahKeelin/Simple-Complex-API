@@ -7,10 +7,10 @@ POST http://localhost:8080/api/users/add
 Content-Type: application/json
 
 {
-  "firstName": "Jacob",
-  "lastName": "Dees",
-  "complexName": "Complex 6",
-  "email": "complex6@yahoo.com",
+  "firstName": "Apple",
+  "lastName": "Bees",
+  "complexName": "The Complex 7",
+  "email": "johncena@fakemail.com",
   "password": "password",
   "phoneNumber": "337-322-1234",
   "address": "1234 Fake St.",
