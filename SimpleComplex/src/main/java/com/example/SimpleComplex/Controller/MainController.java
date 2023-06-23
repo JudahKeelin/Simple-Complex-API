@@ -34,6 +34,11 @@ public class MainController {
         return updatesRepository.findAllByUserId(id);
     }
 
+    @PostMapping("/updates/add")
+    public void addNewUpdate(@RequestBody WeeklyUpdate update) {
+        updatesRepository.save(update);
+    }
+
     @PostMapping("/updates/save")
     public void updateUserInfo(@RequestBody WeeklyUpdate update) {
         WeeklyUpdate existingUpdate;
