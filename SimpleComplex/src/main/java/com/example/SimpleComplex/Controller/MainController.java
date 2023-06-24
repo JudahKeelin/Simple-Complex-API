@@ -86,6 +86,15 @@ public class MainController {
         userInfoRepository.save(existingUser);
     }
 
+    @GetMapping("/users/name/{id}")
+    public String getUserName(@PathVariable int id) {
+        UserInfo user = userInfoRepository.findById(id).orElse(null);
+        if (user != null) {
+            return user.getComplexName();
+        }
+        return null;
+    }
+
 
     public double getDistance(double lat1, double long1, double lat2, double long2) {
         double distance;
