@@ -35,8 +35,9 @@ public class MainController {
     }
 
     @PostMapping("/updates/add")
-    public void addNewUpdate(@RequestBody WeeklyUpdate update) {
+    public boolean addNewUpdate(@RequestBody WeeklyUpdate update) {
         updatesRepository.save(update);
+        return true;
     }
 
     @PostMapping("/updates/save")
