@@ -53,15 +53,15 @@ POST http://localhost:8080/api/updates/save
 Content-Type: application/json
 
 {
-  "userId": 52,
-  "complexName": "The Complex",
-  "date": "2023-05-23",
+  "userId": 1,
+  "complexName": "Complex 1",
+  "date": "2023-06-24",
   "occupancy": 80,
   "prospects": 3,
   "sales": 4,
-  "oneBedPrice": 798,
-  "twoBedPrice": 1001,
-  "threeBedPrice": 1245
+  "oneBedPrice": 900,
+  "twoBedPrice": 1050,
+  "threeBedPrice": 1250
 }
 
 ### Find user
