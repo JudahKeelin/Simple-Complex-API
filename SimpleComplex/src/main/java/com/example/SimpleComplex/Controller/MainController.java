@@ -66,7 +66,7 @@ public class MainController {
     }
 
     @PostMapping("/users/add")
-    public void addNewUser(@RequestBody UserInfo user) {
+    public boolean addNewUser(@RequestBody UserInfo user) {
         Iterable<UserInfo> potentialNeighbors = userInfoRepository.findAll();
         userInfoRepository.save(user);
         user.setNeighborhood(String.valueOf(user.getId()));
@@ -78,6 +78,7 @@ public class MainController {
             }
         }
         userInfoRepository.save(user);
+        return true;
     }
 
     @PostMapping("/users/save")
